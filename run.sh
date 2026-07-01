@@ -26,7 +26,7 @@ uv sync --locked --extra smolvla --extra libero
 
 uv run lerobot-train \
   --policy.type=smolvla \
-  --policy.repo_id="${HF_USER}/libero-test" \
+  --policy.repo_id="${HF_USER}/libero-vlai" \
   --policy.load_vlm_weights=true \
   --dataset.repo_id=HuggingFaceVLA/libero \
   --env.type=libero \
@@ -38,3 +38,15 @@ uv run lerobot-train \
   --eval.n_episodes=1 \
   --env_eval_freq=1000 \
   "${WANDB_ARGS[@]}"
+
+# Benchmark: full LIBERO protocol (4 suites x 10 episodes = 400 episodes)
+CHECKPOINT_PATH="./outputs/checkpoints/last/pretrained_model"
+
+uv run lerobot-eval \
+  --policy.path="${CHECKPOINT_PATH}" \
+  --env.type=libero \
+  --env.task=libero_spatial,libero_object,libero_goal,libero_10 \
+  --eval.batch_size=1 \
+  --eval.n_episodes=10 \
+  --env.max_parallel_tasks=1 \
+  --output_dir=./outputs/eval/

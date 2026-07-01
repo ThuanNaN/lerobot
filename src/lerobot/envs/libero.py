@@ -380,6 +380,7 @@ class LiberoEnv(gym.Env):
     def close(self):
         if self._env is not None:
             self._env.close()
+            self._env = None
 
 
 def _make_env_fns(

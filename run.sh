@@ -13,7 +13,7 @@ fi
 HF_USER="${HF_USER:?Set HF_USER (in .env or env) to your Hugging Face username}"
 TASK_SUITE="${TASK_SUITE:-libero_10}"
 STEPS="${STEPS:-100000}"
-BATCH_SIZE="${BATCH_SIZE:-4}"
+BATCH_SIZE="${BATCH_SIZE:-16}"
 
 export MUJOCO_GL="${MUJOCO_GL:-egl}"
 
@@ -34,6 +34,7 @@ uv run lerobot-train \
   --output_dir=./outputs/ \
   --steps="${STEPS}" \
   --batch_size="${BATCH_SIZE}" \
+  --dataset.root="${SCRIPT_DIR}/data/libero" \
   --eval.batch_size=1 \
   --eval.n_episodes=1 \
   --env_eval_freq=1000 \

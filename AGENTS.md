@@ -23,8 +23,12 @@ git lfs install && git lfs pull             # Test artifacts
 
 ```bash
 uv run pytest tests -svv --maxfail=10                 # All tests
+uv run pytest tests/test_foo.py -svv                  # Single test file
+uv run pytest tests/test_foo.py::test_bar -svv        # Single test
+LEROBOT_TEST_DEVICE=cuda uv run pytest tests -svv     # Run tests on a specific device (default: auto-detected)
 DEVICE=cuda make test-end-to-end                      # All E2E tests
-pre-commit run --all-files                           # Lint + format (ruff, typos, bandit, etc.)
+pre-commit run --all-files                            # Lint + format (ruff, typos, bandit, etc.)
+uv run ruff check . && uv run ruff format .            # Lint + format directly
 ```
 
 ## Architecture (`src/lerobot/`)

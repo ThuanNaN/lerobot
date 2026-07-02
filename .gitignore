@@ -163,7 +163,7 @@ wandb/
 .dev/
 
 # Data folders
-data/
+/data/
 outputs/
 
 # Translations

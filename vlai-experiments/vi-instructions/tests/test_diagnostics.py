@@ -5,7 +5,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import pytest
 import torch
-
 from diagnostics import mean_fertility, paraphrase_gap, pooled_embedding, tokens_per_word
 
 

@@ -58,7 +58,11 @@ def paraphrase_gap(text_model, tokenizer, pairs: list[tuple[str, str]]) -> dict:
     ]
     matched_mean = sum(matched_sims) / len(matched_sims)
     mismatched_mean = sum(mismatched_sims) / len(mismatched_sims)
-    return {"matched_mean": matched_mean, "mismatched_mean": mismatched_mean, "gap": matched_mean - mismatched_mean}
+    return {
+        "matched_mean": matched_mean,
+        "mismatched_mean": mismatched_mean,
+        "gap": matched_mean - mismatched_mean,
+    }
 
 
 def main(model_id: str, output_path: Path) -> None:
